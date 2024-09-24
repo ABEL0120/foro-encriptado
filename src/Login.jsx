@@ -2,9 +2,12 @@
 import '../src/index.css';
 function Login() {
     return (
-        <div className="bg-black w-full h-full">
-            <h1 className="bg-red-500 text-6xl">LOGIN</h1>
-            <button type='button' className='bg-red-100'>Iniciar Sesion</button>
+        <div className="w-full h-full">
+            <h1 className="text-6xl">LOGIN</h1>
+            <input name="email" className='input bg-gray-400 text-black' placeholder='Correo'></input>
+            <input name="password" className='input bg-gray-400 text-black' placeholder='Contraseña'></input>
+            <button type='button' className='bg-black text-white'>Iniciar Sesion</button>
+            <button type='button' className='bg-black text-white'>Registrarse</button>
         </div>
     );
 }
