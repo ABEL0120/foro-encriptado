@@ -7,7 +7,7 @@ function Login() {
             <input name="email" className='input bg-gray-400 text-black' placeholder='Correo'></input>
             <input name="password" className='input bg-gray-400 text-black' placeholder='Contraseña'></input>
             <button type='button' className='bg-black text-white'>Iniciar Sesion</button>
-            <button type='button' className='bg-black text-white'>Registrarse</button>
+            <button type='button' className='bg-black text-white'>Registrate</button>
         </div>
     );
 }
