@@ -24,8 +24,8 @@ function Registro() {
         } catch (error) {
             console.error('Error al registrar:', error);
         }
-    };
-
+    };    
+  
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
