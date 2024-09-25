@@ -6,8 +6,18 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
   { ignores: ['dist'] },
-  { 
+  {
     files: ['**/*.{js,jsx}'],
+    "no-unused-vars": [
+      "warning",
+      {
+        vars: "all",
+        args: "after-used",
+        caughtErrors: "all",
+        ignoreRestSiblings: false,
+        reportUsedIgnorePattern: false,
+      },
+    ],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
