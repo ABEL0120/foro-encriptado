@@ -18,7 +18,7 @@ function Login() {
     const onSubmit = async (data) => {
         try {
             console.log(data);
-            const res = await registrarse(data);
+            // const res = await registrarse(data);
             console.log('Registro exitoso:', res);
         } catch (error) {
             console.error('Error al registrar:', error);
@@ -56,7 +56,7 @@ function Login() {
                         Iniciar Sesion
                     </button>
                 </form>
-            </div> 
+            </div>
         </div>
     );
 }
