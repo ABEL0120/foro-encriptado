@@ -1,9 +1,13 @@
 "use client";
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
+import { useStore } from "../../utils/auth/auth";
+import { useNavigate } from "react-router-dom";
+import { registrarse } from '../../utils/Register/register';
 import '../../index.css';
 
 function Login() {
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -14,11 +18,13 @@ function Login() {
             password: '',
         },
     });
-
+    const hanldeRouter = () => {
+        navigate("/Registro")
+    }
     const onSubmit = async (data) => {
         try {
             console.log(data);
-            // const res = await registrarse(data);
+            const res = await registrarse(data);
             console.log('Registro exitoso:', res);
         } catch (error) {
             console.error('Error al registrar:', error);
@@ -51,13 +57,20 @@ function Login() {
                     </div>
                     <button
                         type="submit"
-                        className="animate-pulse rounded-full w-full flex justify-center py-2 px-4  text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        className="rounded-full w-full flex justify-center py-2 px-4  text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
                         Iniciar Sesion
                     </button>
+                    <button
+                        type="button"
+                        className="rounded-full w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        onClick={hanldeRouter}
+                    >
+                        Registrarse
+                    </button>
                 </form>
             </div>
-        </div>
+        </div >
     );
 }
 export default Login;

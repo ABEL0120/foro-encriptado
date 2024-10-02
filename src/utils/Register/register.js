@@ -1,9 +1,9 @@
 export const registrarse = async (data) => {
-    let url = `http://127.0.0.1:8000/api/product`;
+    let url = `http://localhost:3000/api/auth/register`;
     const res = await fetch(url, {
         method: "POST",
         body: JSON.stringify({
-            name: data.name,
+            name: data.nombre,
             email: data.email,
             password: data.password,
         }),
@@ -13,5 +13,5 @@ export const registrarse = async (data) => {
         },
     });
     const resJson = await res.json();
-    return resJson.data;
+    return resJson;
 }
