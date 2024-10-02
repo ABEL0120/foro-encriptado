@@ -1,4 +1,4 @@
-export const registrarse = async (data) => {
+export const login = async (data) => {
     let url = `http://localhost:3000/api/auth/login`;
     const res = await fetch(url, {
         method: "POST",
@@ -12,5 +12,5 @@ export const registrarse = async (data) => {
         },
     });
     const resJson = await res.json();
-    return resJson.data;
+    return resJson;
 }

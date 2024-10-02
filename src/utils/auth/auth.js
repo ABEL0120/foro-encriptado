@@ -1,8 +1,16 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
-export const useStore = create((set) => ({
-    bears: 0,
-    increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-    removeAllBears: () => set({ bears: 0 }),
-    updateBears: (newBears) => set({ bears: newBears }),
-}))
+export const useAuthStore = create(
+    persist(
+        (set) => ({
+            user: null,
+            login: (userData) => set({ user: userData }),
+            logout: () => set({ user: null }),
+        }),
+        {
+            name: 'auth-storage',
+            getStorage: () => localStorage,
+        }
+    )
+);
