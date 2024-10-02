@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { registrarse } from "../../utils/Register/register"
 import { useNavigate } from "react-router-dom";
