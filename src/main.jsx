@@ -1,8 +1,9 @@
-import Login from './components/Login/Login';
-// import Registro from "./components/Registro/Registro"
-import ReactDOM from 'react-dom/client';
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  // <Registro />
-  <Login />
-)
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRouter from "./components/AppRouter/AppRouter";
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <Router>
+    <AppRouter />
+  </Router>
+);
