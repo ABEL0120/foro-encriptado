@@ -5,7 +5,7 @@ import Registro from "../Registro/Registro";
 import Session from "../Session/Session";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import PublicRoute from "../PublicRoute/PublicRoute";
-import { Foro } from "../Encripted_Message/foro";
+import { Foro } from "../Encripted_Message/Foro";
 import { useAuthStore } from '../../utils/auth/auth';
 
 const AppRouter = () => {
@@ -33,9 +33,7 @@ const AppRouter = () => {
              <Route
                 path="/Foro"
                 element={
-                    <PrivateRoute>
                         <Foro />
-                    </PrivateRoute>
                 }
             />
             <Route
