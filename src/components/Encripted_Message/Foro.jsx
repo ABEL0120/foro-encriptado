@@ -26,5 +26,6 @@ export const Foro = ({messages}) => {
         </div>
       </div>
     </div>
+    //prueba commit
   )
 }
