@@ -3,7 +3,7 @@ import React from 'react'
 
 export const Foro = ({ messages }) => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-200 bg-cover bg-center" style={{ backgroundImage: "url('/images/fondoapp.jpg')" }}>
+    <div className="min-h-screen flex items-center justify-center bg-gray-200 bg-cover bg-center" style={{ backgroundImage: "url('/images/fondoapp2.jpg')" }}>
       <div className="w-full max-w-3xl bg-white bg-opacity-40 backdrop-blur-lg shadow-lg rounded-lg flex flex-col justify-between">
         <div className="p-4 h-96 overflow-y-auto space-y-4">
           <div className="p-3 rounded-lg bg-gray-300 text-black self-end max-w-xs ml-auto">
