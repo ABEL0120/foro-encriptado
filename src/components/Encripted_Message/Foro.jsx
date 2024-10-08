@@ -1,26 +1,27 @@
-<<<<<<< HEAD
+
 import { useState } from 'react'
 import { useFetchMessages } from '../../custom-hooks/useFetchMessages'
+import React from 'react'
 
-export const Foro = () => {
-  const {messages} = useFetchMessages()
-  const [lastId,setLastId] = useState()
 
-  const getLastMessage = () =>{
-    const length = messages?.length
-    const lastMessage = messages?.[length - 1]
-    setLastId(lastMessage.id)
-  }
 
   /* const findIndex = messages.findIndex(message => message.id === lastId)
   messages.splice(findIndex,1) */
 
-=======
-import React from 'react'
+
+
 // import { ListaMensajes } from './listamensajes'
 
 export const Foro = ({ messages }) => {
->>>>>>> 532179930b8a211a201a477d640ea10ba5b53b7e
+  
+    const {messages} = useFetchMessages()
+    const [lastId,setLastId] = useState()
+  
+    const getLastMessage = () =>{
+      const length = messages?.length
+      const lastMessage = messages?.[length - 1]
+      setLastId(lastMessage.id)
+    }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-200 bg-cover bg-center" style={{ backgroundImage: "url('/images/fondoapp2.jpg')" }}>
       <div className="w-full max-w-3xl bg-white bg-opacity-40 backdrop-blur-lg shadow-lg rounded-lg flex flex-col justify-between">
@@ -53,5 +54,5 @@ export const Foro = ({ messages }) => {
       </div>
     </div>
     //prueba commit
-  )
-}
+    )
+  }
