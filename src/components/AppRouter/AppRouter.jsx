@@ -5,7 +5,8 @@ import Registro from "../Registro/Registro";
 import Session from "../Session/Session";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import PublicRoute from "../PublicRoute/PublicRoute";
-import { Foro } from "../Encripted_Message/Foro";
+import { Foro } from "../Encripted_Message/foro";
+import { ForoMensaje } from "../Encripted_Message/ForoMensajes"
 import { useAuthStore } from '../../utils/auth/auth';
 
 const AppRouter = () => {
@@ -30,14 +31,32 @@ const AppRouter = () => {
                     </PublicRoute>
                 }
             />
-             <Route
+            <Route
                 path="/Foro"
                 element={
+                    <PrivateRoute>
                         <Foro />
+                    </PrivateRoute>
+                }
+            />
+            <Route
+                path="/Foro-Mensaje"
+                element={
+                    <PrivateRoute>
+                        <ForoMensaje />
+                    </PrivateRoute>
                 }
             />
             <Route
                 path="/Session"
+                element={
+                    <PrivateRoute>
+                        <Session />
+                    </PrivateRoute>
+                }
+            />
+            <Route
+                path="/Enviar_Mensaje"
                 element={
                     <PrivateRoute>
                         <Session />
