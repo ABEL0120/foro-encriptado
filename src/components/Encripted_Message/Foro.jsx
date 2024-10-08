@@ -4,8 +4,8 @@ import { useFetchMessages } from '../../custom-hooks/useFetchMessages';
 import { desencriptarMensaje } from "../../utils/Encripted Message/encriptedMessage";
 
 export const Foro = () => {
-  const { messages } = useFetchMessages()
-  const [lastId, setLastId] = useState()
+  const { messages } = useFetchMessages();
+  const [lastId, setLastId] = useState();
   const {
     register,
     handleSubmit,
@@ -67,6 +67,7 @@ export const Foro = () => {
               placeholder="Escribe la Secret Key"
               {...register("secret_key", { required: true })}
             />
+            {errors.secret_key && <span className="text-red-500">Este campo es obligatorio</span>}
             <button
               type="submit"
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500"
