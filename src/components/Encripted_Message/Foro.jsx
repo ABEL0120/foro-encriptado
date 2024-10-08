@@ -3,25 +3,22 @@ import { useState } from 'react'
 import { useFetchMessages } from '../../custom-hooks/useFetchMessages'
 import React from 'react'
 
+export const Foro = ({ messages }) => {
+  const {messages} = useFetchMessages()
+  const [lastId,setLastId] = useState()
+  
+  const getLastMessage = () =>{
+    const length = messages?.length
+    const lastMessage = messages?.[length - 1]
+    setLastId(lastMessage.id)
+  }
 
+  /*aqui ira la funcion para mandar la secret key que da el usuario
+  para intentar descifrar el mensaje*/
 
   /* const findIndex = messages.findIndex(message => message.id === lastId)
   messages.splice(findIndex,1) */
 
-
-
-// import { ListaMensajes } from './listamensajes'
-
-export const Foro = ({ messages }) => {
-  
-    const {messages} = useFetchMessages()
-    const [lastId,setLastId] = useState()
-  
-    const getLastMessage = () =>{
-      const length = messages?.length
-      const lastMessage = messages?.[length - 1]
-      setLastId(lastMessage.id)
-    }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-200 bg-cover bg-center" style={{ backgroundImage: "url('/images/fondoapp2.jpg')" }}>
       <div className="w-full max-w-3xl bg-white bg-opacity-40 backdrop-blur-lg shadow-lg rounded-lg flex flex-col justify-between">
@@ -53,6 +50,5 @@ export const Foro = ({ messages }) => {
         </div>
       </div>
     </div>
-    //prueba commit
     )
   }
