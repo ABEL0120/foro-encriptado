@@ -1,5 +1,6 @@
 import { useAuthStore } from "../../utils/auth/auth";
 import { useNavigate } from "react-router-dom";
+import "./session.css"
 
 function Session() {
     const user = useAuthStore((state) => state.user);
@@ -16,8 +17,8 @@ function Session() {
     }
 
     return (
-        <div>
-            <h1 className="text-2xl text-center">Bienvenido {user.name}</h1>
+        <div className="welcome-container">
+            <h1 className="welcome-text text-2xl text-center"> ¡Bienvenido al foro!{user.name}</h1>
         </div>
     );
 }
