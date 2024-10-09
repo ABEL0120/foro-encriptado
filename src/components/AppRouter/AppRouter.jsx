@@ -19,7 +19,7 @@ const AppRouter = () => {
   }, [user]);
 
   const hideNavBar = ["/login", "/Registro"];
-  const shouldHideNavBar = hideNavBar.includes(location.pathname.toLowerCase());
+  const shouldHideNavBar = hideNavBar.includes(location.pathname);
 
   return (
     <div>

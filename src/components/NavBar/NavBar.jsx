@@ -4,7 +4,6 @@ import '../../index.css';
 
 function NavBar() {
 
-    const user = useAuthStore((state) => state.user);
     const logout = useAuthStore((state) => state.logout);
 
     const handleLogout = () => {
