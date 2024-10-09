@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { ListaMensajes } from './listamensajes'
+import React, { useState, useEffect } from 'react';
+import { ListaMensajes } from './listamensajes';
 import { encriptedMessages } from '../../utils/Encripted Message/encriptedMessage';
 
 export const ForoMensaje = ({ messages }) => {
-    let mensajes = [
-        { mensaje: "ola0" },
-        { mensaje: "ola1" },
-        { mensaje: "ola2" },
-        { mensaje: "ola3" },
-    ];
-
-
+    const [pregunta, setPregunta] = useState('');
+    const [respuesta, setRespuesta] = useState('');
+    const [claveSecreta, setClaveSecreta] = useState('');
+    const [mensajes, setMensajes] = useState('');
 
     useEffect(() => {
         const getMensajes = async () => {
@@ -20,40 +16,104 @@ export const ForoMensaje = ({ messages }) => {
             } else {
                 console.log(res);
             }
+        };
+        getMensajes();
+    }, []);
+
+    
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        
+        const data = {
+            question: pregunta,
+            message: respuesta,
+            secret: claveSecreta,
+        };
+
+        try {
+            const response = await fetch('http://localhost:3000/api/message/encrypt', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.status) {
+                console.log("Mensaje enviado:", result);
+                setMensajes([...mensajes, { mensaje: pregunta }]); 
+                setPregunta('');
+                setRespuesta('');
+                setClaveSecreta('');
+            } else {
+                console.error("Error al enviar el mensaje:", result);
+            }
+        } catch (error) {
+            console.error("Error en la conexión:", error);
         }
-    }, [])
+    };
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-200 bg-cover bg-center" style={{ backgroundImage: "url('/images/fondoapp.jpg')" }}>
             <div className="w-full max-w-3xl bg-white bg-opacity-40 backdrop-blur-lg shadow-lg rounded-lg flex flex-col justify-between">
+                
+                {/* Área de visualización de mensajes */}
                 <div className="p-4 h-96 overflow-y-auto space-y-4">
                     {mensajes.length > 0 ? (
-                        mensajes.map((item) => (
+                        mensajes.map((item, index) => (
                             <ListaMensajes
+                                key={index}
                                 messages={item.mensaje}
                             />
                         ))
                     ) : (
                         <div className="p-3 rounded-lg bg-gray-300 text-black self-end max-w-xs ml-auto">
+                            No hay mensajes
                         </div>
                     )}
                 </div>
-
-                <div className="w-full p-4 border-t border-gray-300 flex items-center bg-white bg-opacity-40 backdrop-blur-lg">
-                    <input
-                        type="text"
-                        className="flex-1 px-4 py-2 text-gray-700 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Escribe la Secret Key"
-                    />
+    
+                <form onSubmit={handleSubmit} className="w-full p-4 border-t border-gray-300 bg-white bg-opacity-40 backdrop-blur-lg">
+                    <div className="flex space-x-2">
+                        <input
+                            type="text"
+                            value={pregunta}
+                            onChange={(e) => setPregunta(e.target.value)}
+                            className="flex-1 px-4 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Pregunta"
+                            required
+                        />
+    
+                        <input
+                            type="text"
+                            value={respuesta}
+                            onChange={(e) => setRespuesta(e.target.value)}
+                            className="flex-1 px-4 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Respuesta"
+                            required
+                        />
+    
+                        <input
+                            type="password"
+                            value={claveSecreta}
+                            onChange={(e) => setClaveSecreta(e.target.value)}
+                            className="flex-1 px-4 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Clave Secreta"
+                            required
+                        />
+                    </div>
+    
                     <button
                         type="submit"
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         Enviar
                     </button>
-                </div>
+                </form>
             </div>
         </div>
-        //prueba commit
-    )
-}
+    );
+};
