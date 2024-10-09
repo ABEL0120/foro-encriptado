@@ -17,12 +17,6 @@ function Session() {
 
     return (
         <div>
-            <button
-                onClick={handleLogout}
-                className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg"
-            >
-                Cerrar Sesión
-            </button>
             <h1 className="text-2xl text-center">Bienvenido {user.name}</h1>
         </div>
     );
