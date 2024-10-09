@@ -1,29 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ListaMensajes } from './listamensajes';
-import { encriptedMessages } from '../../utils/Encripted Message/encriptedMessage';
+import { encriptarMensaje } from '../../utils/Encripted Message/encriptedMessage';
 
-export const ForoMensaje = ({ messages }) => {
+export const ForoMensaje = () => {
     const [pregunta, setPregunta] = useState('');
     const [respuesta, setRespuesta] = useState('');
     const [claveSecreta, setClaveSecreta] = useState('');
     const [mensajes, setMensajes] = useState('');
-
-    useEffect(() => {
-        const getMensajes = async () => {
-            let res = await encriptedMessages();
-            if (res.status) {
-                console.log(res);
-            } else {
-                console.log(res);
-            }
-        };
-        getMensajes();
-    }, []);
-
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         
         const data = {
             question: pregunta,
@@ -32,24 +18,16 @@ export const ForoMensaje = ({ messages }) => {
         };
 
         try {
-            const response = await fetch('http://localhost:3000/api/message/encrypt', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
+            const response = await encriptarMensaje(data)
 
-            const result = await response.json();
-
-            if (response.ok && result.status) {
-                console.log("Mensaje enviado:", result);
+            if (response.status) {
+                console.log("Mensaje enviado:", response.newMessage);
                 setMensajes([...mensajes, { mensaje: pregunta }]); 
                 setPregunta('');
                 setRespuesta('');
                 setClaveSecreta('');
             } else {
-                console.error("Error al enviar el mensaje:", result);
+                console.error("Error al enviar el mensaje");
             }
         } catch (error) {
             console.error("Error en la conexión:", error);

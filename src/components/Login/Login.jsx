@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useAuthStore } from "../../utils/auth/auth";
 import { useNavigate } from "react-router-dom";

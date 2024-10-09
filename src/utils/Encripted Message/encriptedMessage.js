@@ -25,19 +25,14 @@ export const desencriptarMensaje = async (data) => {
 }
 
 export const encriptarMensaje = async (data) => {
-    let url = `http://localhost:3000/api/message/encrypt`;
-    const res = await fetch(url, {
-        method: "POST",
-        body: JSON.stringify({
-            message: data.mensaje,
-            question: data.pregunta,
-            secret: data.secret_key,
-        }),
+    const res = await fetch('http://localhost:3000/api/message/encrypt', {
+        method: 'POST',
         headers: {
-            // Authorization: "Bearer " + token,
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
         },
+        body: JSON.stringify(data),
     });
+
     const resJson = await res.json();
     return resJson;
 }
