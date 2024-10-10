@@ -5,25 +5,15 @@ import { desencriptarMensaje } from "../../utils/Encripted Message/encriptedMess
 
 export const Foro = () => {
   const { messages } = useFetchMessages();
-  const [lastId, setLastId] = useState();
   const [secretKeys, setSecretKeys] = useState({}); 
-
-  const getLastMessage = () => {
-    const length = messages?.length;
-    const lastMessage = messages?.[length - 1];
-    setLastId(lastMessage && lastMessage.id ? lastMessage.id : "");
-    return lastMessage && lastMessage.id ? lastMessage.id : "";
-  };
 
   const onSubmit = async (messageId) => {
     const data = { id: messageId, secret_key: secretKeys[messageId] };
+
     try {
       const res = await desencriptarMensaje(data);
 
       if (res.desencryptedMessage) {
-        const findIndex = messages.findIndex(message => message.id === lastId);
-        messages.splice(findIndex, 1);     
-        
         Swal.fire({
           icon: 'success',
           title: 'Mensaje Desencriptado',
@@ -48,10 +38,10 @@ export const Foro = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start bg-gray-200 p-6 space-y-8 bg-cover bg-center" style={{ backgroundImage: "url('/images/fondoapp2.jpg')" }}>
+    <div className="grid gap-2 min-h-screen bg-gray-200 p-6 bg-cover bg-center grid-cols-3" style={{ backgroundImage: "url('/images/fondoapp2.jpg')" }}>
   
       {messages?.map((message) => (
-        <div key={message.id} className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 space-y-4 ">
+        <div key={message.id} className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 h-64">
           <div className="mb-2">
             <h2 className="text-xl font-semibold text-blue-700 mb-2">{message.question}</h2>
           </div>  

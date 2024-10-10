@@ -70,7 +70,7 @@ export const ForoMensaje = () => {
                             value={respuesta}
                             onChange={(e) => setRespuesta(e.target.value)}
                             className="flex-1 px-4 py-2 text-gray-700 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="Respuesta"
+                            placeholder="Mensaje"
                             required
                         />
     
