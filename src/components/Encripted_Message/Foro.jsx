@@ -17,7 +17,7 @@ export const Foro = () => {
         Swal.fire({
           icon: 'success',
           title: 'Mensaje Desencriptado',
-          html: `<div style="max-height: 150px; overflow-y: auto; text-align: left;">${res.desencryptedMessage}</div>`,
+          text: res.desencryptedMessage,
           width: 600, 
           confirmButtonText: 'Cerrar'
         });
